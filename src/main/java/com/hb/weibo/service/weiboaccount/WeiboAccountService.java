@@ -20,7 +20,7 @@ public class WeiboAccountService {
 	@Autowired
 	private WeiboAccountDao weiboAccountDao;
 
-	public void updateNick(String nick, Long type, String username) {
+	public void updateNick(String nick, int type, String username) {
 		weiboAccountDao.updateNick(nick, type, username);
 	}
 }

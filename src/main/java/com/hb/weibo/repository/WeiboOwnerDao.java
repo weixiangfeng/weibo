@@ -15,15 +15,15 @@ import com.hb.weibo.entity.WeiboOwner;
 
 public interface WeiboOwnerDao extends PagingAndSortingRepository<WeiboOwner, Long> {
 	@Modifying
-	@Query("update WeiboOwner weiboOwner set weiboOwner.flag=1,weiboOwner.checktime=?1  where weiboAccount.type=?2 and weiboAccount.username=?3")
-	void updateNormalFlag(Date checktime, Long type, String username);
+	@Query("update WeiboOwner weiboOwner set weiboOwner.flag=1,weiboOwner.checktime=?1  where weiboOwner.type=?2 and weiboOwner.username=?3")
+	void updateNormalFlag(Date checktime, int type, String username);
 
 	@Modifying
-	@Query("update WeiboOwner weiboOwner set weiboOwner.flag=?1,weiboOwner.checktime=?2,weiboOwner.reason=?3  where weiboAccount.type=?4 and weiboAccount.username=?5")
-	void updateFlag(int flag, Date checktime, String reason, Long type, String username);
+	@Query("update WeiboOwner weiboOwner set weiboOwner.flag=?1,weiboOwner.checktime=?2,weiboOwner.reason=?3  where weiboOwner.type=?4 and weiboOwner.username=?5")
+	void updateFlag(int flag, Date checktime, String reason, int type, String username);
 
 	@Modifying
-	@Query("update WeiboOwner weiboOwner set weiboOwner.telephone=?1 where weiboAccount.type=?2 and weiboAccount.username=?3")
-	void updateTelephone(String telephone, Long type, String username);
+	@Query("update WeiboOwner weiboOwner set weiboOwner.telephone=?1 where weiboOwner.type=?2 and weiboOwner.username=?3")
+	void updateTelephone(String telephone, int type, String username);
 
 }

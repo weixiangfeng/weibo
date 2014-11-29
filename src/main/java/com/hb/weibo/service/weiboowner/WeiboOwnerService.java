@@ -22,8 +22,14 @@ public class WeiboOwnerService {
 	@Autowired
 	private WeiboOwnerDao weiboOwnerDao;
 
-	public void updateFlag(int flag, String reason, Long type, String username) {
+	public void updateFlag(int flag, String reason, int type, String username) {
 		Date checktime = new Date();
 		weiboOwnerDao.updateFlag(flag, checktime, reason, type, username);
 	}
+
+	public void updateTelephone(String telephone, int type, String username) {
+
+		weiboOwnerDao.updateTelephone(telephone, type, username);
+	}
+
 }

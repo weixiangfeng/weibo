@@ -36,10 +36,25 @@ public class AccountRestController {
 	public String AccountManage(String content) {
 		// 解析content类型:nickname、loginerror、mobileyz
 		String[] resultArray = StringUtils.split(content, "|");
-		if (resultArray.length == 0) {
+		if (resultArray.length == 0 || resultArray.length != 7) {
 			return "0";
 		}
-
+		int type = Integer.parseInt(resultArray[4]);
+		String username = resultArray[5];
+		String typeString = resultArray[0];
+		if (typeString.equals("nickname")) {
+			String nick = resultArray[6];
+			weiboAccountService.updateNick(nick, type, username);
+			weiboOwnerService.updateFlag(1, "", type, username);
+		} else if (typeString.equals("loginerror")) {
+			String reason = resultArray[6];
+			weiboOwnerService.updateFlag(1, reason, type, username);
+		} else if (typeString.equals("mobileyz")) {
+			String telephone = resultArray[6];
+			weiboOwnerService.updateTelephone(telephone, type, username);
+		} else {
+			return "0";
+		}
 		return "1";
 	}
 }
